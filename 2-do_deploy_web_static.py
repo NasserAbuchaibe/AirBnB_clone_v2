@@ -4,6 +4,7 @@
 from datetime import datetime
 from fabric.api import *
 import os.path
+
 env.hosts = ['35.229.74.86', '35.231.88.30']
 
 
@@ -21,7 +22,7 @@ def do_deploy(archive_path):
         pathm = pathr + "/web_static/*"
         pathd = pathr + "/web_static/"
         sudo("mv {:s} {:s}".format(pathm, pathr))
-        sudo("rm -rf {:s}".format(pathdd))
+        sudo("rm -rf {:s}".format(pathd))
         sudo("rm -rf /data/web_static/current")
         sudo("ln -s {:s} /data/web_static/current".format(pathr))
         print("New version deployed!")
