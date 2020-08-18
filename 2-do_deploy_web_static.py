@@ -13,15 +13,15 @@ def do_deploy(archive_path):
     if os.path.isfile(archive_path):
         pre_path = archive_path.split("/")[1]
         put(archive_path, "/tmp/")
-        path_l = "/tmp/" + pre_path
-        path_r = "/data/web_static/releases/" + pre_path.split(".")[0]
-        sudo("mkdir -p {:s}".format(path_r))
+        pathl = "/tmp/" + pre_path
+        pathr = "/data/web_static/releases/" + pre_path.split(".")[0]
+        sudo("mkdir -p {:s}".format(pathr))
         sudo("tar -xzf {:s} -C {:s}".format(pathl, pathr))
         sudo("rm {:s}".format(pathl))
-        path_m = pathr + "/web_static/*"
-        path_d = pathr + "/web_static/"
+        pathm = pathr + "/web_static/*"
+        pathd = pathr + "/web_static/"
         sudo("mv {:s} {:s}".format(pathm, pathr))
-        sudo("rm -rf {:s}".format(path_d))
+        sudo("rm -rf {:s}".format(pathdd))
         sudo("rm -rf /data/web_static/current")
         sudo("ln -s {:s} /data/web_static/current".format(pathr))
         print("New version deployed!")
