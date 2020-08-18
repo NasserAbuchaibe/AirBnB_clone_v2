@@ -21,9 +21,9 @@ def do_pack():
     except:
         return None
 
+
 def do_deploy(archive_path):
     """transfer files"""
-
     if os.path.isfile(archive_path):
         pre_path = archive_path.split("/")[1]
         put(archive_path, "/tmp/")
@@ -42,6 +42,7 @@ def do_deploy(archive_path):
         return True
     else:
         return False
+
 
 def deploy():
     """ok"""
