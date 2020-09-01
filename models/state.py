@@ -5,9 +5,10 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from os import getenv
 
+
 class State(BaseModel, Base):
     """ State class """
-     if getenv("HBNB_TYPE_STORAGE") == "db":
+    if getenv("HBNB_TYPE_STORAGE") == "db":
         __tablename__ = 'states'
         name = Column(
             'name',
@@ -15,6 +16,8 @@ class State(BaseModel, Base):
             nullable=False
         )
         cities = relationship('City', cascade='all, delete', backref="state")
+    else:
+        name = ''
 
     @property
     def cities(self):
@@ -25,4 +28,3 @@ class State(BaseModel, Base):
             if self.id == va['state_id']:
                     city_instances.append(va)
         return city_instances
-    
