@@ -3,7 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-from models import *
+from models.city import City
 from os import getenv
 
 
@@ -26,7 +26,7 @@ class State(BaseModel, Base):
                 actual State.id
             """
             city_instances = []
-            obj = storage.all('City')
+            obj = storage.all(City)
             for ke, va in obj.items():
                 if self.id == va['state_id']:
                         city_instances.append(va)
